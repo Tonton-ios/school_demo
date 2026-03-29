@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IMSF — Inscription</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">IMSF</div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Accueil</a>
+        <a href="login.html">Connexion</a>
+        <a href="events.html">Rencontre & événements</a>
+        <a href="info_parents.html">Info parents</a>
+        <a href="personnels.html">Personnels</a>
+        <a href="postuler.html">Postuler</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="inscription-page">
+    <section class="page-hero" style="background:linear-gradient(135deg, #1f6feb, #0f4fe0); color:#fff; padding:4rem 0;">
+      <div class="hero-content container">
+        <h1>Inscription</h1>
+        <p class="subtitle">Rejoignez la famille IMSF pour une éducation d'excellence.</p>
+      </div>
+    </section>
+
+    <section class="container" style="padding:3rem 1.25rem;">
+      <div style="max-width:700px; margin:0 auto; background:#fff; padding:2.5rem; border-radius:16px; box-shadow:var(--shadow-md); border:1px solid rgba(31,111,235,0.1);">
+        <h2 style="margin-top:0; text-align:center; margin-bottom:2rem; color:var(--accent);">Formulaire de pré-inscription</h2>
+        
+        <form id="inscriptionForm" class="contact-form">
+          <div class="form-group">
+            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:var(--dark);">Nom de l'enfant</label>
+            <div style="position:relative;">
+              <input type="text" name="childName" placeholder="Nom complet de l'élève" required>
+              <span class="input-icon">👤</span>
+            </div>
+          </div>
+          
+          <div class="form-grid-2-col">
+            <div class="form-group">
+              <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:var(--dark);">Date de naissance</label>
+              <input type="date" name="dob" required style="padding-left:1rem;">
+            </div>
+            <div class="form-group">
+              <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:var(--dark);">Classe demandée</label>
+              <select name="grade" required style="width:100%; padding:1rem; border-radius:12px; border:2px solid rgba(31,111,235,0.15); background:rgba(255,255,255,0.8); font-family:inherit;">
+                <option value="">Sélectionner...</option>
+                <option value="maternelle">Maternelle</option>
+                <option value="primaire">Primaire</option>
+                <option value="secondaire">Secondaire</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:var(--dark);">Nom du parent / tuteur</label>
+            <div style="position:relative;">
+              <input type="text" name="parentName" placeholder="Nom complet du responsable" required>
+              <span class="input-icon">👥</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:var(--dark);">Email de contact</label>
+            <div style="position:relative;">
+              <input type="email" name="email" placeholder="votre@email.com" required>
+              <span class="input-icon">✉️</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:var(--dark);">Téléphone</label>
+            <div style="position:relative;">
+              <input type="tel" name="phone" placeholder="+509 ..." required>
+              <span class="input-icon">📱</span>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label style="display:block; margin-bottom:0.5rem; font-weight:600; color:var(--dark);">Message (optionnel)</label>
+            <textarea name="message" placeholder="Besoins particuliers, questions..." style="min-height:100px;"></textarea>
+          </div>
+
+          <button class="btn btn-submit" type="submit" style="width:100%; margin-top:1rem; justify-self:center;">Envoyer la demande</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© IMSF — Tous droits réservés</div>
+      <div>Mentions légales | Politique de confidentialité</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/ux.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

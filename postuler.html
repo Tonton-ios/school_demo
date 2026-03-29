@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IMSF — Postuler</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">IMSF</div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Accueil</a>
+        <a href="login.html">Connexion</a>
+        <a href="events.html">Rencontre & événements</a>
+        <a href="info_parents.html">Info parents</a>
+        <a href="personnels.html">Personnels</a>
+        <a href="postuler.html" class="active">Postuler</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="postuler-page">
+    <section class="page-hero postuler-hero">
+      <div class="hero-content container">
+        <h1>Offres d'emploi</h1>
+        <p class="subtitle">Consultez les postes ouverts et postulez en quelques clics.</p>
+      </div>
+    </section>
+
+    <section class="jobs-section container">
+      <h2>Postes disponibles</h2>
+      <div class="jobs-grid" id="jobsGrid">
+        <!-- jobs injected by JS -->
+      </div>
+    </section>
+
+
+    <div id="jobModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close">✕</button>
+        <h3 id="modalTitle">Postuler</h3>
+        <p id="modalDesc">Description</p>
+        <form id="applyForm" class="apply-form">
+          <input type="text" name="name" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Votre email" required>
+          <input type="text" name="phone" placeholder="Téléphone" required>
+          <textarea name="message" placeholder="Lettre de motivation (optionnel)"></textarea>
+          <button class="btn" type="submit">Envoyer candidature</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© IMSF — Tous droits réservés</div>
+      <div>Mentions légales | Politique de confidentialité</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/jobs.js"></script>
+  <script src="assets/js/ux.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

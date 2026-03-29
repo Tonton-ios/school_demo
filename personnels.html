@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IMSF — Personnels</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">IMSF</div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Accueil</a>
+        <a href="login.html">Connexion</a>
+        <a href="events.html">Rencontre & événements</a>
+        <a href="info_parents.html">Info parents</a>
+        <a href="personnels.html" class="active">Personnels</a>
+        <a href="postuler.html">Postuler</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="personnels-page">
+    <section class="page-hero personnels-hero">
+      <div class="hero-content container">
+        <h1>Notre équipe pédagogique</h1>
+        <p class="subtitle">Découvrez les personnes qui font vivre l'IMSF — enseignants, personnels administratifs et encadrement.</p>
+      </div>
+    </section>
+
+    <section class="staff-section container">
+      <h2>Les personnels</h2>
+      <div class="staff-grid" id="staffGrid">
+        <!-- staff cards injected by JS -->
+      </div>
+    </section>
+
+    <section class="staff-info container">
+      <h3>Plus d'informations</h3>
+      <p>Cliquer sur une carte pour afficher une courte biographie et les responsabilités de chaque membre du personnel.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© IMSF — Tous droits réservés</div>
+      <div>Mentions légales | Politique de confidentialité</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/personnels.js"></script>
+  <script src="assets/js/ux.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

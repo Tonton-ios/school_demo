@@ -1,0 +1,404 @@
+/* Theme enhancements: gradients, shadows, animations, refined typography */
+:root{
+  --accent-1:#1f6feb;
+  --accent-2:#0066ff;
+  --bg-soft:#f5f7ff;
+  --muted:#6b7280;
+  --card-bg:linear-gradient(180deg,#ffffff, #fbfdff);
+}
+
+body{background:linear-gradient(135deg,var(--bg-soft) 0%,#f0f5ff 100%)}
+
+/* Logo animation */
+.logo{
+  display:inline-block;
+  position:relative;
+  will-change:transform,filter;
+  font-weight:900;
+  font-size:1.5rem;
+  letter-spacing:-1px;
+  background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.logo.animate{animation:logoEntrance .9s cubic-bezier(.2,.9,.3,1) forwards}
+
+.logo::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-6px;
+  height:3px;
+  border-radius:3px;
+  background:linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  opacity:0;
+  transform:scaleX(.2);
+  transform-origin:left;
+  transition:opacity .35s ease,transform .5s cubic-bezier(.2,.9,.3,1)
+}
+
+.logo.animate::after{opacity:1;transform:scaleX(1)}
+
+.logo:hover{
+  transform:translateY(-3px) scale(1.02);
+  filter:drop-shadow(0 8px 20px rgba(31,111,235,0.2));
+  transition:transform .2s ease,filter .2s ease
+}
+
+@keyframes logoEntrance{
+  0%{opacity:0;transform:translateY(-6px) rotate(-4deg) scale(.95)}
+  60%{transform:translateY(4px) rotate(1deg) scale(1.02)}
+  100%{opacity:1;transform:none}
+}
+
+/* Navigation */
+.nav a{
+  color:rgba(15,23,42,0.8);
+  font-weight:600;
+  padding:.5rem .8rem;
+  font-size:.9rem;
+  position:relative;
+  overflow:hidden;
+  will-change:transform;
+  transition:color .25s ease,transform .25s ease
+}
+
+.nav a::before{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:-100%;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  transition:left .35s cubic-bezier(.2,.9,.3,1)
+}
+
+.nav a:hover::before{left:0}
+
+.nav a:hover{
+  color:var(--accent-1);
+  transform:translateY(-2px)
+}
+
+.nav a.active{
+  background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color:#fff;
+  border-radius:8px
+}
+
+.nav a.nav-item-animate{animation:navItemEnter .6s cubic-bezier(.2,.9,.3,1) forwards}
+
+@keyframes navItemEnter{
+  0%{opacity:0;transform:translateY(-8px) scale(.95)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* Hero */
+.hero-image{
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
+  position:relative;
+}
+
+.hero-overlay h2{
+  font-size:2.5rem;
+  letter-spacing:-0.5px;
+  font-weight:800;
+  text-shadow:0 4px 12px rgba(0,0,0,0.15)
+}
+
+.hero-overlay p{font-size:1.1rem;color:rgba(255,255,255,0.95)}
+
+.hero-cta{
+  background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  box-shadow:0 12px 32px rgba(31,111,235,0.25);
+  transform:translateY(0);
+  transition:transform .25s cubic-bezier(.2,.9,.3,1),box-shadow .25s ease
+}
+
+.hero-cta:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 48px rgba(31,111,235,0.3)
+}
+
+/* Buttons */
+.btn{
+  border:none;
+  font-weight:600;
+  transition:all .3s cubic-bezier(.2,.9,.3,1)
+}
+
+.btn:hover{transform:translateY(-2px) scale(1.02)}
+
+.btn.outline{
+  border:2px solid var(--accent-1);
+  color:var(--accent-1);
+  padding:.65rem 1.2rem;
+  background:transparent
+}
+
+.btn.outline:hover{
+  background:rgba(31,111,235,0.1);
+  border-color:var(--accent-1)
+}
+
+/* Stats */
+.stat{
+  transition:transform .25s cubic-bezier(.2,.9,.3,1),box-shadow .25s ease,background .25s ease;
+}
+
+.stat:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 48px rgba(31,111,235,0.15);
+  background:rgba(31,111,235,0.05) !important
+}
+
+.stat .num{
+  font-size:2rem;
+  font-weight:800;
+  background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text
+}
+
+.stat .label{font-weight:600;color:var(--muted)}
+
+.stat-icon{animation:float 3s ease-in-out infinite}
+
+@keyframes float{
+  0%, 100%{transform:translateY(0px)}
+  50%{transform:translateY(-8px)}
+}
+
+/* Social */
+.social{
+  transition:all .25s cubic-bezier(.2,.9,.3,1)
+}
+
+.social:hover{
+  transform:translateY(-4px) scale(1.05);
+  box-shadow:0 12px 28px rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.4) !important
+}
+
+/* Footer */
+.site-footer{
+  background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  border-top:1px solid rgba(255,255,255,0.1)
+}
+
+.footer-inner{color:rgba(255,255,255,0.85);font-weight:500}
+
+/* Entrance animations */
+.fade-in{
+  opacity:0;
+  transform:translateY(8px);
+  animation:fadeInUp .6s ease forwards
+}
+
+@keyframes fadeInUp{
+  to{opacity:1;transform:none}
+}
+
+
+/* improve form visuals */
+.contact-form input,.contact-form textarea{background:#fff;border:1px solid rgba(12,21,36,0.06)}
+.contact-form button{background:linear-gradient(90deg,var(--accent-1),#3b82f6);color:#fff;padding:.8rem 1.25rem;border-radius:10px}
+
+/* responsive tweaks */
+@media (max-width:900px){
+  .hero-overlay h2{font-size:1.6rem}
+  .hero-overlay p{font-size:0.95rem}
+}
+
+/* --- STYLE 2026 : Login & Dashboard --- */
+
+/* Arrière-plan animé fluide */
+.bg-animate-gradient {
+  background: linear-gradient(-45deg, #0f172a, #1e3a8a, #2563eb, #1f6feb);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fix: Combine animations when fade-in is applied by ux.js */
+.bg-animate-gradient.fade-in {
+  animation: gradientBG 15s ease infinite, fadeInUp 0.6s ease forwards;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Formes flottantes (Blobs) */
+.shape-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  z-index: 0;
+  animation: floatBlob 8s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+.shape-1 { top: -10%; left: -10%; width: 300px; height: 300px; background: #3b82f6; animation-delay: 0s; }
+.shape-2 { bottom: -10%; right: -10%; width: 400px; height: 400px; background: #8b5cf6; animation-delay: -2s; }
+.shape-3 { top: 40%; left: 40%; width: 200px; height: 200px; background: #06b6d4; animation-delay: -4s; }
+
+@keyframes floatBlob {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 40px) scale(1.1); }
+}
+
+/* Effet Verre (Glassmorphism) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  border-radius: 24px;
+}
+
+/* Inputs Modernes */
+.input-modern {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0.6);
+  border-radius: 14px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+.input-modern:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--accent-1);
+  box-shadow: 0 10px 25px rgba(31,111,235,0.15);
+  transform: scale(1.01);
+}
+
+/* Widgets Dashboard */
+.dash-widget {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+.dash-widget:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(31,111,235,0.12);
+  border-color: rgba(31,111,235,0.2);
+}
+
+/* Cercle de progression */
+.progress-circle {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: conic-gradient(var(--accent-1) var(--percent), #e2e8f0 0);
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.progress-circle::before { content: ''; position: absolute; inset: 8px; background: #fff; border-radius: 50%; }
+.progress-value { position: relative; font-weight: 800; font-size: 1.4rem; color: var(--dark); }
+
+/* --- DASHBOARD LAYOUT 2026 --- */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.dash-sidebar {
+  background: #fff;
+  border-right: 1px solid rgba(0,0,0,0.05);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 50;
+}
+
+.dash-logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+  padding-left: 0.5rem;
+}
+
+.dash-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.dash-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dash-nav-item:hover {
+  background: rgba(31,111,235,0.05);
+  color: var(--accent-1);
+  transform: translateX(5px);
+}
+
+.dash-nav-item.active {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(31,111,235,0.25);
+}
+
+.dash-content {
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Tables Dashboard */
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.dash-table th { text-align: left; padding: 1rem; color: var(--muted); font-size: 0.85rem; border-bottom: 1px solid #e2e8f0; }
+.dash-table td { padding: 1rem; border-bottom: 1px solid #f1f5f9; color: var(--dark); font-weight: 500; }
+.dash-table tr:last-child td { border-bottom: none; }
+
+/* Messages List */
+.msg-item {
+  padding: 1rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  margin-bottom: 0.8rem;
+  border-left: 4px solid var(--accent-1);
+  transition: transform 0.2s;
+}
+.msg-item:hover { transform: translateX(4px); background: #fff; box-shadow: var(--shadow-sm); }
+
+@media (max-width: 900px) {
+  .dashboard-layout { grid-template-columns: 80px 1fr; }
+  .dash-nav-item span { display: none; }
+  .dash-logo { font-size: 1.2rem; text-align: center; padding: 0; }
+  .dash-nav-item { justify-content: center; padding: 0.8rem; }
+  .dash-content { padding: 1rem; }
+}

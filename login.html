@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IMSF — Connexion Étudiant</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">IMSF</div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Accueil</a>
+        <a href="login.html" class="active">Connexion</a>
+        <a href="events.html">Rencontre & événements</a>
+        <a href="info_parents.html">Info parents</a>
+        <a href="personnels.html">Personnels</a>
+        <a href="postuler.html">Postuler</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="login-page">
+    <section class="bg-animate-gradient" style="min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1.25rem; position: relative;">
+      
+      <!-- Formes d'arrière-plan -->
+      <div class="shape-blob shape-1"></div>
+      <div class="shape-blob shape-2"></div>
+      <div class="shape-blob shape-3"></div>
+
+      <div class="glass-panel" style="padding: 3rem 2.5rem; width: 100%; max-width: 440px; position: relative; z-index: 10;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <div class="logo animate" style="font-size: 2.5rem; margin-bottom: 0.5rem;">IMSF</div>
+          <h1 style="margin: 0; font-size: 1.8rem; color: var(--dark); font-weight: 800;">Bienvenue</h1>
+          <p style="color: var(--muted); margin-top: 0.5rem; font-size: 1rem;">Accédez à votre espace numérique</p>
+        </div>
+
+        <form id="loginForm" class="contact-form" style="grid-template-columns: 1fr; gap: 1.5rem;">
+          <div class="form-group">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--dark); font-size: 0.9rem; margin-left: 0.5rem;">Identifiant</label>
+            <div style="position: relative;">
+              <input type="text" name="username" placeholder="ex: jean.dupont" required class="input-modern">
+              <span class="input-icon" style="color: var(--accent-1);">👤</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--dark); font-size: 0.9rem; margin-left: 0.5rem;">Mot de passe</label>
+            <div style="position: relative;">
+              <input type="password" name="password" placeholder="••••••••" required class="input-modern">
+              <span class="input-icon" style="color: var(--accent-1);">🔒</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--muted);">
+              <input type="checkbox"> Se souvenir de moi
+            </label>
+            <a href="#" style="color: var(--accent); text-decoration: none; font-weight: 600;">Mot de passe oublié ?</a>
+          </div>
+
+          <button class="btn btn-submit" type="submit" style="width: 100%; margin-top: 1rem; padding: 1rem; border-radius: 14px; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(31,111,235,0.3);">Se connecter</button>
+        </form>
+
+        <div style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--muted);">
+          Nouveau ici ? <a href="inscription.html" style="color: var(--accent); font-weight: 700; text-decoration: none;">Créer un compte</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© IMSF — Tous droits réservés</div>
+      <div>Mentions légales | Politique de confidentialité</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/ux.js"></script>
+  <script src="assets/js/login.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

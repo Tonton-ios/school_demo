@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IMSF — Contact</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">IMSF</div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html">Accueil</a>
+        <a href="login.html">Connexion</a>
+        <a href="events.html">Rencontre & événements</a>
+        <a href="info_parents.html">Info parents</a>
+        <a href="personnels.html">Personnels</a>
+        <a href="postuler.html">Postuler</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <button id="navToggle" class="nav-toggle">☰</button>
+    </div>
+  </header>
+
+  <main class="contact-page">
+    <section class="page-hero" style="background:linear-gradient(135deg, #1f6feb, #0066ff); color:#fff; padding:5rem 0; position:relative; overflow:hidden;">
+      <div class="hero-content container" style="position:relative; z-index:2; text-align:center;">
+        <h1 style="font-size:3rem; margin-bottom:1rem;">Contactez-nous</h1>
+        <p class="subtitle" style="font-size:1.2rem; opacity:0.9;">Une question ? Une demande d'information ? Nous sommes là pour vous.</p>
+      </div>
+      <div style="position:absolute; top:-50%; right:-10%; width:600px; height:600px; background:radial-gradient(circle, rgba(31,111,235,0.15), transparent 70%); border-radius:50%;"></div>
+    </section>
+
+    <section class="container" style="padding:4rem 1.25rem;">
+      <div class="contact-wrapper" style="display:grid; grid-template-columns: 1fr 1fr; gap:4rem; align-items:start;">
+        
+        <div class="contact-info-col">
+          <h2 style="margin-top:0; margin-bottom:1.5rem; font-size:1.8rem; color:var(--dark);">Nos coordonnées</h2>
+          <p style="color:var(--muted); margin-bottom:2rem; line-height:1.6;">
+            L'équipe administrative de l'IMSF est disponible pour vous accueillir et répondre à vos interrogations concernant la scolarité, les inscriptions ou la vie scolaire.
+          </p>
+
+          <div class="info-cards" style="display:grid; gap:1.5rem;">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <h5>Adresse</h5>
+                <p>Berthé Pétion-Ville, #6<br>Port-au-Prince, Haïti</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <h5>Téléphone</h5>
+                <p>+509 1234-5678</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <h5>Email</h5>
+                <p>institutionmixtelasaintefamille@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="contact-item" style="border:1px solid #25D366; background:rgba(37,211,102,0.05);">
+              <div class="contact-icon">💬</div>
+              <div>
+                <h5 style="color:#25D366;">WhatsApp</h5>
+                <p style="margin-bottom:0.5rem;">Discutez instantanément avec nous</p>
+                <a href="https://wa.me/50912345678" target="_blank" class="btn" style="background:#25D366; padding:0.4rem 1rem; font-size:0.9rem; box-shadow:none;">Envoyer un message</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-col" style="background:#fff; padding:2.5rem; border-radius:20px; box-shadow:var(--shadow-lg); border:1px solid rgba(31,111,235,0.1);">
+          <h2 style="margin-top:0; margin-bottom:1.5rem; font-size:1.8rem; color:var(--dark);">Envoyez-nous un message</h2>
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Votre nom complet" required>
+              <span class="input-icon">👤</span>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Votre adresse email" required>
+              <span class="input-icon">✉️</span>
+            </div>
+            <div class="form-group full-width">
+              <textarea name="message" placeholder="Comment pouvons-nous vous aider ?" required style="min-height:150px;"></textarea>
+            </div>
+            <button class="btn btn-submit" type="submit" style="width:100%; margin-top:1rem;">Envoyer le message</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© IMSF — Tous droits réservés</div>
+      <div>Mentions légales | Politique de confidentialité</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/ux.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
