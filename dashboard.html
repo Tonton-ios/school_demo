@@ -112,22 +112,33 @@
         <div class="dash-widget">
           <h3>Mes Cours</h3>
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-            <div style="padding: 1.5rem; background: #f0f9ff; border-radius: 12px; text-align: center; cursor: pointer;">
+            <div class="course-card" style="padding: 1.5rem; background: #f0f9ff; border-radius: 12px; text-align: center; cursor: pointer;">
               <div style="font-size: 2rem; margin-bottom: 0.5rem;">📐</div>
               <strong>Mathématiques</strong>
             </div>
-            <div style="padding: 1.5rem; background: #f0fdf4; border-radius: 12px; text-align: center; cursor: pointer;">
+            <div class="course-card" style="padding: 1.5rem; background: #f0fdf4; border-radius: 12px; text-align: center; cursor: pointer;">
               <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧬</div>
               <strong>SVT</strong>
             </div>
-            <div style="padding: 1.5rem; background: #fff7ed; border-radius: 12px; text-align: center; cursor: pointer;">
+            <div class="course-card" style="padding: 1.5rem; background: #fff7ed; border-radius: 12px; text-align: center; cursor: pointer;">
               <div style="font-size: 2rem; margin-bottom: 0.5rem;">📚</div>
               <strong>Français</strong>
             </div>
-            <div style="padding: 1.5rem; background: #f5f3ff; border-radius: 12px; text-align: center; cursor: pointer;">
+            <div class="course-card" style="padding: 1.5rem; background: #f5f3ff; border-radius: 12px; text-align: center; cursor: pointer;">
               <div style="font-size: 2rem; margin-bottom: 0.5rem;">🇬🇧</div>
               <strong>Anglais</strong>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VUE: DETAIL COURS -->
+      <div id="view-course-detail" class="dash-view" style="display: none;">
+        <button id="backToCourses" class="btn outline" style="margin-bottom: 1.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;">← Retour aux cours</button>
+        <div class="dash-widget">
+          <h3 id="courseDetailTitle" style="margin-bottom: 1.5rem;">Nom du Cours</h3>
+          <div id="courseResources" style="display: grid; gap: 1rem;">
+            <!-- Ressources injectées par JS -->
           </div>
         </div>
       </div>
