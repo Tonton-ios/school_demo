@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IMSF — Administration</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script>
+    if (localStorage.getItem('isAdminLoggedIn') !== 'true') {
+      window.location.href = 'admin-login.html';
+    }
+  </script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar Admin Dynamique -->
+    <aside class="dash-sidebar">
+      <div class="dash-logo logo">IMSF Admin</div>
+
+      <div style="margin-bottom: 2rem; padding: 0 0.5rem;">
+        <label style="font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Espace de travail</label>
+        <select id="roleSelector" class="input-modern" style="padding: 0.5rem; margin-top: 0.5rem; font-size: 0.85rem;">
+          <option value="direction">Direction / Admin</option>
+          <option value="prof">Professeur</option>
+        </select>
+      </div>
+      
+      <nav class="dash-nav" id="adminNav">
+        <!-- Items communs -->
+        <a href="#admin-home" class="dash-nav-item active">
+          <i>📊</i> <span>Vue d'ensemble</span>
+        </a>
+        <!-- Items Direction -->
+        <a href="#admin-students" class="dash-nav-item">
+          <i>🎓</i> <span>Étudiants</span>
+        </a>
+        <a href="#admin-apps" class="dash-nav-item">
+          <i>📩</i> <span>Candidatures</span>
+        </a>
+        <a href="#admin-events" class="dash-nav-item">
+          <i>📅</i> <span>Calendrier & Dates</span>
+        </a>
+        <a href="#admin-messages" class="dash-nav-item">
+          <i>📢</i> <span>Messages Direction</span>
+        </a>
+
+        <!-- Items Prof (cachés par défaut) -->
+        <a href="#prof-courses" class="dash-nav-item prof-only" style="display:none;">
+          <i>📚</i> <span>Gestion des Cours</span>
+        </a>
+        <a href="#prof-quizzes" class="dash-nav-item prof-only" style="display:none;">
+          <i>📝</i> <span>Quizz & Devoirs</span>
+        </a>
+      </nav>
+
+      <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid #eee;">
+        <a href="#" id="adminLogout" class="dash-nav-item" style="color: #ef4444;">
+          <i>🚪</i> <span>Quitter l'admin</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Contenu Principal -->
+    <main class="dash-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2 id="adminPageTitle" style="margin:0;">Tableau de Bord</h2>
+        <div class="admin-user-pill" style="display: flex; align-items: center; gap: 0.8rem; background: #fff; padding: 0.5rem 1rem; border-radius: 50px; border: 1px solid #e2e8f0;">
+          <span id="roleBadge" style="font-weight: 600;">Direction</span>
+          <div style="width: 32px; height: 32px; background: var(--accent-1); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">AD</div>
+        </div>
+      </div>
+
+      <!-- VUE: DASHBOARD (Stats) -->
+      <div id="admin-home" class="dash-view">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.5rem;">
+          <div class="dash-widget">
+            <div style="color: var(--muted); font-size: 0.9rem; font-weight: 600;">Total Étudiants</div>
+            <div style="font-size: 2rem; font-weight: 800; color: var(--accent-1); margin-top: 0.5rem;">1,248</div>
+            <div style="font-size: 0.8rem; color: #10b981; margin-top: 0.5rem;">↑ 12% ce mois</div>
+          </div>
+          <div class="dash-widget">
+            <div style="color: var(--muted); font-size: 0.9rem; font-weight: 600;">Candidatures reçues</div>
+            <div id="count-apps" style="font-size: 2rem; font-weight: 800; color: #f59e0b; margin-top: 0.5rem;">0</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;">Postes enseignants & admin</div>
+          </div>
+          <div class="dash-widget">
+            <div style="color: var(--muted); font-size: 0.9rem; font-weight: 600;">Revenue Mensuel</div>
+            <div style="font-size: 2rem; font-weight: 800; color: #10b981; margin-top: 0.5rem;">450k HTG</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VUE: CANDIDATURES -->
+      <div id="admin-apps" class="dash-view" style="display: none;">
+        <div class="dash-widget">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="margin:0;">Candidatures Recrutement</h3>
+            <button id="clearApps" class="btn outline" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; border-color: #ef4444; color: #ef4444;">Effacer l'historique</button>
+          </div>
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Candidat</th>
+                <th>Poste</th>
+                <th>Email / Tel</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="appsTableBody">
+              <!-- Injecté par admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VUE: ÉTUDIANTS (Simple démo) -->
+      <div id="admin-students" class="dash-view" style="display: none;">
+        <div class="dash-widget">
+          <h3>Gestion des Étudiants</h3>
+          <div style="margin-top: 1rem; color: var(--muted); border: 2px dashed #e2e8f0; padding: 3rem; text-align: center; border-radius: 12px;">
+            L'interface de gestion de la base de données des étudiants est en cours de déploiement.
+          </div>
+        </div>
+      </div>
+
+      <!-- VUE: MESSAGES DIRECTION -->
+      <div id="admin-messages" class="dash-view" style="display: none;">
+        <div class="dash-widget">
+          <h3>Envoyer une notification globale</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Ce message apparaîtra sur le dashboard de tous les élèves.</p>
+          <form id="broadcastForm" style="display: grid; gap: 1rem; margin-top: 1.5rem; max-width: 600px;">
+            <input type="text" id="msgTitle" placeholder="Titre de l'alerte" class="input-modern" required>
+            <textarea id="msgContent" placeholder="Contenu du message..." class="input-modern" style="min-height: 120px;" required></textarea>
+            <button type="submit" class="btn">Diffuser le message</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- VUE: ÉVÉNEMENTS (Direction) -->
+      <div id="admin-events" class="dash-view" style="display: none;">
+        <div class="dash-widget">
+          <h3>Planification Scolaire</h3>
+          <form style="display: grid; gap: 1rem; margin-top: 1.5rem; max-width: 500px;">
+            <input type="text" placeholder="Titre de l'événement" class="input-modern" style="padding-left: 1rem;">
+            <input type="date" class="input-modern" style="padding-left: 1rem;">
+            <textarea placeholder="Description" class="input-modern" style="padding-left: 1rem; min-height: 100px;"></textarea>
+            <button type="button" class="btn">Publier sur le calendrier</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- VUE: COURS (Prof) -->
+      <div id="prof-courses" class="dash-view" style="display: none;">
+        <div class="dash-widget">
+          <h3>Ajouter un nouveau cours ou une ressource</h3>
+          <form id="addCourseForm" style="display: grid; gap: 1rem; margin-top: 1.5rem; max-width: 600px;">
+            <select id="courseSubject" class="input-modern">
+              <option value="Mathématiques">Mathématiques</option>
+              <option value="SVT">SVT</option>
+              <option value="Français">Français</option>
+              <option value="Anglais">Anglais</option>
+            </select>
+            <input type="text" id="resourceTitle" placeholder="Titre de la ressource (ex: Chapitre 4 - Algèbre)" class="input-modern" required>
+            <select id="resourceType" class="input-modern">
+              <option value="PDF">Document PDF</option>
+              <option value="Video">Lien Vidéo</option>
+              <option value="Link">Lien Externe</option>
+            </select>
+            <input type="url" id="resourceUrl" placeholder="URL de la ressource (YouTube, Drive, etc.)" class="input-modern" required>
+            <button type="submit" class="btn" style="background: var(--accent-2);">Mettre en ligne</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- VUE: QUIZZ (Prof) -->
+      <div id="prof-quizzes" class="dash-view" style="display: none;">
+        <div class="dash-widget">
+          <h3>Création de Quizz</h3>
+          <p>Module de création de questionnaires interactifs en cours de développement.</p>
+          <form style="opacity: 0.5; pointer-events: none;">
+            <input type="text" placeholder="Titre du Quizz" class="input-modern">
+            <button class="btn">Ajouter des questions</button>
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="ux.js"></script>
+  <script>
+    // Petit script pour la navigation admin
+    document.addEventListener('DOMContentLoaded', () => {
+      // La logique de navigation sera dans admin.js
+    });
+  </script>
+  <script src="admin.js"></script>
+</body>
+</html>
