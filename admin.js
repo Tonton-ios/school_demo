@@ -5,29 +5,35 @@ document.addEventListener('DOMContentLoaded', function() {
   const roleSelector = document.getElementById('roleSelector');
   const roleBadge = document.getElementById('roleBadge');
 
+  // Récupérer le rôle au chargement
+  const currentRole = sessionStorage.getItem('userRole') || 'direction';
+
+  function applyRoleUI(role) {
+    roleBadge.textContent = role === 'direction' || role === 'admin' ? 'Direction' : 'Professeur';
+    if (roleSelector) roleSelector.value = role === 'admin' ? 'direction' : role;
+
+    const profItems = document.querySelectorAll('.prof-only');
+    const directionItems = Array.from(navItems).filter(item => 
+      !item.classList.contains('prof-only') && item.getAttribute('href') !== '#admin-home'
+    );
+
+    if (role === 'prof') {
+      profItems.forEach(el => el.style.display = 'flex');
+      directionItems.forEach(el => el.style.display = 'none');
+      document.querySelector('a[href="#prof-courses"]').click();
+    } else {
+      profItems.forEach(el => el.style.display = 'none');
+      directionItems.forEach(el => el.style.display = 'flex');
+    }
+  }
+
+  // Initialiser l'interface selon le rôle stocké
+  applyRoleUI(currentRole);
+
   // --- GESTION DES RÔLES ---
   if (roleSelector) {
     roleSelector.addEventListener('change', (e) => {
-      const role = e.target.value;
-      roleBadge.textContent = role === 'direction' ? 'Direction' : 'Professeur';
-      
-      // Filtrage du menu
-      const profItems = document.querySelectorAll('.prof-only');
-      const directionItems = Array.from(navItems).filter(item => 
-        !item.classList.contains('prof-only') && item.getAttribute('href') !== '#admin-home'
-      );
-
-      if (role === 'prof') {
-        profItems.forEach(el => el.style.display = 'flex');
-        directionItems.forEach(el => el.style.display = 'none');
-        // Aller à la vue par défaut prof
-        document.querySelector('a[href="#prof-courses"]').click();
-      } else {
-        profItems.forEach(el => el.style.display = 'none');
-        directionItems.forEach(el => el.style.display = 'flex');
-        // Retourner à l'accueil admin
-        document.querySelector('a[href="#admin-home"]').click();
-      }
+      applyRoleUI(e.target.value);
     });
   }
 
@@ -57,13 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // 2. Gestion des candidatures (Récupération du localStorage)
-  function loadApplications() {
+  async function loadApplications() {
     const appsTableBody = document.getElementById('appsTableBody');
     const countApps = document.getElementById('count-apps');
     if (!appsTableBody) return;
 
-    const storedApps = JSON.parse(localStorage.getItem('imsf_applications') || '[]');
+    // Récupération depuis Supabase
+    const { data: storedApps, error } = await window.supabaseClient
+      .from('applications')
+      .select('*')
+      .order('created_at', { ascending: false });
     
+    if (error) return console.error(error);
     if (countApps) countApps.textContent = storedApps.length;
 
     if (storedApps.length === 0) {
@@ -95,9 +106,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const clearBtn = document.getElementById('clearApps');
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
-      if (confirm('Voulez-vous vraiment effacer toutes les candidatures ?')) {
-        localStorage.removeItem('imsf_applications');
-        loadApplications();
+      const password = prompt("Veuillez entrer le mot de passe admin pour confirmer l'effacement :");
+      if (password === 'admin') {
+        if (confirm('Voulez-vous vraiment effacer toutes les candidatures ?')) {
+          localStorage.removeItem('imsf_applications');
+          loadApplications();
+        }
+      } else if (password !== null) {
+        alert("Mot de passe incorrect. Action annulée.");
       }
     });
   }
@@ -107,13 +123,18 @@ document.addEventListener('DOMContentLoaded', function() {
   if (broadcastForm) {
     broadcastForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const newMsg = {
-        title: document.getElementById('msgTitle').value,
-        content: document.getElementById('msgContent').value,
-        date: 'À l\'instant'
-      };
-      alert('Message diffusé avec succès aux élèves !');
-      broadcastForm.reset();
+      const password = prompt("Entrez le mot de passe admin pour diffuser ce message :");
+      if (password === 'admin') {
+        const newMsg = {
+          title: document.getElementById('msgTitle').value,
+          content: document.getElementById('msgContent').value,
+          date: 'À l\'instant'
+        };
+        alert('Message diffusé avec succès aux élèves !');
+        broadcastForm.reset();
+      } else if (password !== null) {
+        alert("Mot de passe incorrect. Diffusion annulée.");
+      }
     });
   }
 
@@ -134,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (logoutBtn) {
     logoutBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      localStorage.removeItem('isAdminLoggedIn');
+      sessionStorage.removeItem('isAdminLoggedIn');
       window.location.href = 'admin-login.html';
     });
   }

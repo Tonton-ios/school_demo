@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function(){
   modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
   document.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
 
-  applyForm.addEventListener('submit', function(e){
+  applyForm.addEventListener('submit', async function(e){
     e.preventDefault();
     const jobId = applyForm.dataset.jobId;
     const formData = new FormData(applyForm);
@@ -63,12 +63,18 @@ document.addEventListener('DOMContentLoaded', function(){
       email: formData.get('email'),
       phone: formData.get('phone'),
       message: formData.get('message'),
-      sentAt: new Date().toISOString()
+      created_at: new Date().toISOString()
     };
-    // persist to localStorage as a simple simulation
-    const stored = JSON.parse(localStorage.getItem('imsf_applications') || '[]');
-    stored.push(payload);
-    localStorage.setItem('imsf_applications', JSON.stringify(stored));
+
+    // Insertion dans Supabase
+    const { error } = await window.supabaseClient
+      .from('applications')
+      .insert([payload]);
+
+    if (error) {
+      alert("Erreur lors de l'envoi : " + error.message);
+      return;
+    }
 
     // build email content and open Gmail compose (opens new tab)
     const schoolEmail = 'contact@imsf.tn';
